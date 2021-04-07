@@ -1,5 +1,7 @@
 import React from "react";
 import './App.css';
+import Steps from "../src/components/Steps";
+
 const tempMin = -20
 const tempMax = 40
 const heartMin = 80
@@ -15,6 +17,7 @@ class App extends React.Component {
           <p>Heart : {heartMin}</p>
           <p>Temperature : {tempMin}</p>
           <p>Steps : {stepsMin}</p>
+          <img src={Steps}></img>
         </div>
 
       </div>
