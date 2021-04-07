@@ -1,14 +1,14 @@
 import React from "react";
 import "./App.css";
-import Button from "../Button";
+import Button from "./Button";
 
 class App extends React.Component {
   render() {
     return (
       <div >
-        <NavBar />
+        {/* <NavBar /> */}
         <h1> hey clique sur le bouton</h1>
-        <button />      
+        <Button />      
         <footer />
       </div>
     );
