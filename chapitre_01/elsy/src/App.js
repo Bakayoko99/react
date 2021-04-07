@@ -14,10 +14,10 @@ class App extends React.Component {
     return (
       <div className="container-fluid">
         <div className="row">
+          <Steps></Steps>
           <p>Heart : {heartMin}</p>
           <p>Temperature : {tempMin}</p>
           <p>Steps : {stepsMin}</p>
-          <img src={Steps}></img>
         </div>
 
       </div>
