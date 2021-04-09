@@ -1,14 +1,20 @@
-
-// import './App.css';
+import React from "react";
+import Team from "./components/Team"
+import Points from "./components/Points"
+import './styles/teams.css';
 
 function App() {
   return (
     <div className="App">
       <h1>Liste d'equipes de foot d'angleterre</h1>
-      <h3>Team is: Arsenal and its color is: red</h3>
-      <p>Amount of points is:</p>
-      <p>
-      </p>
+      <Team color="red" name="Arsenal"></Team>
+      <Points></Points>
+      <Team color="red" name="Manchester United"></Team>
+      <Points></Points>
+
+      <Team color="blue" name="Manchester City"></Team>
+      <Team color="white" name="Tottenham"></Team>
+     
     </div>
   );
 }
