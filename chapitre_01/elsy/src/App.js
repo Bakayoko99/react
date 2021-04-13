@@ -20,13 +20,26 @@ class App extends React.Component {
       temperature: -10,
       steps: 3000
     }
+    this.onStepsChange= this.onStepsChange.bind(this)
+    this.onHeartChange= this.onHeartChange.bind(this)
+    this.onTempChange= this.onTempChange.bind(this)
   }
-  myFunction=(e)=>{
-    // console.log(val);
+
+  onHeartChange(e){
     this.setState({
-      heart: e.target.value, 
-      steps: e.target.value  })
-  }
+      heart: e.target.value 
+      })}
+
+  onStepsChange(e){
+    this.setState({
+      steps: e.target.value 
+      })}
+
+  onTempChange(e){
+    this.setState({
+      temperature: e.target.value 
+      })}
+
   render() {
     return (
       <div className="container-fluid">
@@ -34,11 +47,11 @@ class App extends React.Component {
           {/* water */}
           <Box icon = "local_drink" color = "#3A85FF" value = {1.5} unit = "L"></Box>
           {/* steps */}
-          <Box icon = "directions_walk" color = "black" value = {this.state.steps} unit = "steps" onStepsChange = {this.myFunction}></Box>
+          <Box icon = "directions_walk" color = "black" value = {this.state.steps} unit = "steps" onChange = {this.onStepsChange} min={stepsMin} max={stepsMax}></Box>
           {/* heart */}
-          <Box icon = "favorite" color = "red" value = {this.state.heart} unit = "BPM" onHeartChange = {this.myFunction} min={heartMin} max={heartMax}></Box>
+          <Box icon = "favorite" color = "red" value = {this.state.heart} unit = "BPM" onChange = {this.onHeartChange} min={heartMin} max={heartMax}></Box>
           {/* Temperature */}
-          <Box icon = "wb_sunny" color = "yellow" value = {-10} unit = "°C"></Box>
+          <Box icon = "wb_sunny" color = "yellow" value = {-10} unit = "°C" onChange = {this.onTempChange} min={tempMin} max={tempMax}></Box>
           <p>Steps : {stepsMin}</p>
           <p>Heart : {heartMin}</p>
           <p>Temperature : {tempMin}</p> 
