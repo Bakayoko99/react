@@ -15,7 +15,7 @@ class App extends React.Component {
   constructor(){
     super();
     this.state= {
-      water: 0,
+      water: 1.5,
       heart: 120,
       temperature: -10,
       steps: 3000
@@ -39,22 +39,28 @@ class App extends React.Component {
     this.setState({
       temperature: e.target.value 
       })}
+    
+  calculateWater(e){
+    if(this.onTempChange > 20){
+
+      this.setState({
+        water: e.target.value + 0.02
+      })
+    }
+  }
 
   render() {
     return (
       <div className="container-fluid">
         <div className="row">
           {/* water */}
-          <Box icon = "local_drink" color = "#3A85FF" value = {1.5} unit = "L"></Box>
+          <Box icon = "local_drink" color = "#3A85FF" value = {this.state.water} unit = "L" min = {1,5}></Box>
           {/* steps */}
           <Box icon = "directions_walk" color = "black" value = {this.state.steps} unit = "steps" onChange = {this.onStepsChange} min={stepsMin} max={stepsMax}></Box>
           {/* heart */}
           <Box icon = "favorite" color = "red" value = {this.state.heart} unit = "BPM" onChange = {this.onHeartChange} min={heartMin} max={heartMax}></Box>
           {/* Temperature */}
-          <Box icon = "wb_sunny" color = "yellow" value = {-10} unit = "°C" onChange = {this.onTempChange} min={tempMin} max={tempMax}></Box>
-          <p>Steps : {stepsMin}</p>
-          <p>Heart : {heartMin}</p>
-          <p>Temperature : {tempMin}</p> 
+          <Box icon = "wb_sunny" color = "yellow" value = {this.state.temperature} unit = "°C" onChange = {this.onTempChange} min={tempMin} max={tempMax}></Box>
         </div>
 
       </div>
