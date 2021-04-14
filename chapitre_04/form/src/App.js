@@ -10,29 +10,28 @@ class App extends React.Component {
   render() {
     return (
       <div class= "col-6 offset-3">
+
         <h1>Login</h1>
 
-        <Input for="formGroupExampleInput" type="text" id="formGroupExampleInput" placeholder="Enter email..." ></Input>
-        <Input for="formGroupExampleInput" type="text" id="formGroupExampleInput" placeholder="Enter password..." ></Input>
-
         <div class="mb-3">
-          <label for="formGroupExampleInput" class="form-label">Email address</label>
-          <input type="text" class="form-control" id="formGroupExampleInput" ></input>
-        </div>
-        <div class="mb-3">
-          <label for="formGroupExampleInput2" class="form-label">Password</label>
-          <input type="text" class="form-control" id="formGroupExampleInput2" ></input>
+        <Input for="formGroupExampleInput" type="text" textInside="Email address" id="formGroupExampleInput" classNameInput="form-control" classNameLabel= "form-label" placeholder="Enter email..." ></Input>
         </div>
 
-        <div class="form-check">
+        <div class="mb-3">
+        <Input for="formGroupExampleInput" type="text" id="formGroupExampleInput" classNameInput="form-control" classNameLabel= "form-label" textInside="Password" placeholder="Enter password..." ></Input>
+        </div>
+
+        <div class="form-check mb-3">
           <input class="form-check-input" type="checkbox" id="gridCheck"></input>
           <label class="form-check-label" for="gridCheck">
             Remember me
           </label>
         </div>
-        <div class="">
+
+        <div>
           <button type="submit" class="btn btn-primary">Sign in</button>
         </div>
+
       </div>
 
     )
