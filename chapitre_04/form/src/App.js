@@ -7,6 +7,8 @@ import Input from "./components/Input"
 
 class App extends React.Component {
 
+  isvalidMail()
+
   render() {
     return (
       <div class= "col-6 offset-3">
