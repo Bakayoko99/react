@@ -7,25 +7,47 @@ import Input from "./components/Input"
 
 class App extends React.Component {
 
-  isvalidMail()
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: ""
+    }
+  }
+
+  handleChangeMail(e) {
+
+    this.setState({
+      email: e.target.value
+    })
+  }
+
+  isValidMail() {
+
+    if (this.state.email.length > 3) {
+        return "is-valid"
+    }else{
+      return "is-invalid"
+    }
+  }
 
   render() {
     return (
-      <div class= "col-6 offset-3">
+      <div class="col-6 offset-3">
 
         <h1>Login</h1>
 
         <div class="mb-3">
-        <Input for="formGroupExampleInput" type="text" textInside="Email address" id="formGroupExampleInput" classNameInput="form-control" classNameLabel= "form-label" placeholder="Enter email..." ></Input>
+          <Input type="text" onChange={this.isValidMail} textInside="Email address" classNameInput={"form-control"+" "+ this.isValidMail()} classNameLabel="form-label" placeholder="Enter email..." ></Input>
         </div>
 
         <div class="mb-3">
-        <Input for="formGroupExampleInput" type="text" id="formGroupExampleInput" classNameInput="form-control" classNameLabel= "form-label" textInside="Password" placeholder="Enter password..." ></Input>
+          <Input  type="text" classNameInput={"form-control"}  classNameLabel="form-label" textInside="Password" placeholder="Enter password..." ></Input>
         </div>
 
         <div class="form-check mb-3">
           <input class="form-check-input" type="checkbox" id="gridCheck"></input>
-          <label class="form-check-label" for="gridCheck">
+          <label class="form-check-label" for="gridCheck"> 
             Remember me
           </label>
         </div>
