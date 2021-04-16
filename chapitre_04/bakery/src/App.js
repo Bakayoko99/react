@@ -12,63 +12,84 @@ class App extends React.Component{
     super();
     this.state = {
       activeTab: 'Add',
-      items: []
+      items: [],
     }
 
-    this.changeActiveTabAdd = this.changeActiveTabAdd.bind(this)
-    this.changeActiveTabList = this.changeActiveTabList.bind(this)
-    this.changeActiveTabPay = this.changeActiveTabPay.bind(this)
+    this.selectAdd = this.selectAdd.bind(this)
+    this.selectList = this.selectList.bind(this)
+    this.selectPay = this.selectPay.bind(this)
+    this.addItem = this.addItem.bind(this)
+   
     
   }
 
-  changeActiveTabAdd(){
+  selectAdd(){
     this.setState({
       activeTab: 'Add'
     })
   }
 
-  changeActiveTabList(){
+  selectList(){
     this.setState({
       activeTab: 'List'
     })
   }
 
-  changeActiveTabPay(){
+  selectPay(){
     this.setState({
       activeTab: 'Pay'
     })
   }
 
   renderAdd(){
-    return(
-      <Add></Add>
-    )
+    if(this.state.activeTab === 'Add'){
+
+      return(
+        <Add onClickButton={this.addItem}></Add>
+      )
+    }
   }
 
   renderList(){
-    if(){
-
+    if(this.state.activeTab === 'List'){
       return(
-        <List></List>
+        <List items={this.state.items}></List>
         )
     }
   }
 
   renderPay(){
-    return(
-      <Pay></Pay>
-    )
+    if(this.state.activeTab === 'Pay'){
+      return(
+        <Pay></Pay>
+      )
+    }
   }
 
+  addItem(n, p){
+    this.setState({
+      items: [...this.state.items, { name:n, price:p }]
+    })
+    console.log(this.state.items);
+  }
+  
+  
+  
+
   render(){
+    console.log();
     return(
       <div>
 
-        <Button isSelected={this.state.activeTab === 'Add' ? "btn btn-primary": "btn btn-light"} onClickButton={this.changeActiveTabAdd}>Add</Button>
+        <Button isSelected={this.state.activeTab === 'Add' ? "btn btn-primary": "btn btn-light"} onClickButton={this.selectAdd}>Add</Button>
 
-        <Button isSelected={this.state.activeTab === 'List' ? "btn btn-primary": "btn btn-light"} onClickButton={this.changeActiveTabList}>List</Button>
+        <Button isSelected={this.state.activeTab === 'List' ? "btn btn-primary": "btn btn-light"} onClickButton={this.selectList}>List</Button>
 
-        <Button  isSelected={this.state.activeTab === 'Pay' ? "btn btn-primary": "btn btn-light"} onClickButton={this.changeActiveTabPay}>Pay</Button>
+        <Button  isSelected={this.state.activeTab === 'Pay' ? "btn btn-primary": "btn btn-light"} onClickButton={this.selectPay}>Pay</Button>
+
+        {this.renderAdd()}
+        {this.renderList()}
+        {this.renderPay()}
 
       </div>
     )
