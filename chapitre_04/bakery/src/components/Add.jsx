@@ -9,3 +9,5 @@ class Add extends React.Component{
         )
     }
 }
+
+export default Add

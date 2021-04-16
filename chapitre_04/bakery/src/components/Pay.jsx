@@ -11,3 +11,5 @@ class Pay extends React.Component{
         )
     }
 }
+
+export default Pay
