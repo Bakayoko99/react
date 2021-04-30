@@ -42,11 +42,6 @@ width: 240px;
 margin: auto;
 }
 
-body{
-  display: flex;
-  justify-content: center;
-}
-
 .card h4,p{
   width: min-content;
 }
