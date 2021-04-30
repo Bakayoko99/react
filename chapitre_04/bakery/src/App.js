@@ -6,6 +6,7 @@ import Button from './components/Button.jsx';
 import Add from './components/Add.jsx';
 import List from './components/List';
 import Pay from './components/Pay';
+import Card from './components/Card';
 
 class App extends React.Component{
   constructor(){
@@ -86,7 +87,8 @@ class App extends React.Component{
         <Button isSelected={this.state.activeTab === 'List' ? "btn btn-primary": "btn btn-light"} onClickButton={this.selectList}>List</Button>
 
         <Button  isSelected={this.state.activeTab === 'Pay' ? "btn btn-primary": "btn btn-light"} onClickButton={this.selectPay}>Pay</Button>
-
+        {/*test composant Card */}
+        <Card productName= "croissant" price = {3} onClick={()=>{}} ></Card>
         {this.renderAdd()}
         {this.renderList()}
         {this.renderPay()}

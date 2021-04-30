@@ -43,6 +43,7 @@ class Add extends React.Component {
                     <input id="inputRange" type="range" class="form-range" min="0" max="10" step="0.5" onChange={this.updatePrice} ></input>
                 </div>
             </div>
+            
         )
     }
 }
