@@ -5,7 +5,7 @@ class Card extends React.Component {
     constructor(){
         super()
         this.state = {
-            image: 'http://localhost:3001/images/item.png'
+            image: 'http://localhost:3000/images/item.png'
         }
     }
 
