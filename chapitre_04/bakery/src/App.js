@@ -89,7 +89,7 @@ class App extends React.Component{
         <Button  isSelected={this.state.activeTab === 'Pay' ? "btn btn-primary": "btn btn-light"} onClickButton={this.selectPay}>Pay</Button>
         
         {/*test composant Card */}
-        <Card productName= "croissant" price = {3} onClick={()=>{}} ></Card>
+        {/* <Card productName= "croissant" price = {3} onClick={()=>{}} ></Card> */}
         {this.renderAdd()}
         {this.renderList()}
         {this.renderPay()}

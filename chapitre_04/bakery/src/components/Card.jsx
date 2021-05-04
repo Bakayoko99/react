@@ -5,9 +5,11 @@ class Card extends React.Component {
     constructor(){
         super()
         this.state = {
-            image: 'http://localhost:3000/images/item.png'
+            image: 'images/item.png'
         }
     }
+
+    // 'http://localhost:3000/images/item.png'
 
     // componentDidMount(){
     //     fetch('https://raw.githubusercontent.com/konexio/digitous-assest/main/bakery/'+ this.props.productName)
@@ -31,7 +33,7 @@ class Card extends React.Component {
         return (
 
             <div>
-                <button onClick={this.props.onClick(this.props.productName, this.props.price)}> <img src={this.state.image} alt="image item"/></button>
+                <button onClick={()=>this.props.onClick(this.props.productName, this.props.price)}> <img src={this.state.image} alt="image item"/></button>
             </div>
 
         )

@@ -33,7 +33,6 @@ class Add extends React.Component {
         console.log(this.state.productName, this.state.price);
         return (
             <div>
-                Add
                 <div class="input-group mb-3 col-12 offset- ">
                     <input type="text" class="form-control" placeholder="Item" onChange={this.updateProductName} ></input>
                     <button class="btn btn-primary" type="button" onClick={()=>this.props.onClickButton(this.state.productName, this.state.price)} >Add</button>

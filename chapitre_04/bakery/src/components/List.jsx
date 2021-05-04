@@ -7,7 +7,6 @@ class List extends React.Component {
     render() {
         return (
             <div>
-                List
                 <ul class="list-group col-12 offset-">
 
                     {this.props.items.map((elem) => {
