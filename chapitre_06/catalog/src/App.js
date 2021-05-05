@@ -1,10 +1,15 @@
 
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
-
+import Home from './composants/Home'
+import Films from './data/Films.json'
 
 class App extends Component {
+
+  
   render() {
+ 
+
     return (
       <BrowserRouter>
         <div>
@@ -23,7 +28,7 @@ class App extends Component {
 
           <Switch>
             <Route exact path='/'/>
-            <Route path='/:id' />
+            <Route path='/:id' component={Home} />
             <Route/>
           </Switch>
         </div>
