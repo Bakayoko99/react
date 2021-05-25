@@ -10,47 +10,44 @@ import PopularBattle from './components/PopularBattle'
 import Favorites from './components/Favorites'
 import Error404 from './components/Error404'
 
-class App extends Component {
+export default function App() {
 
+  return (
+    <BrowserRouter>
+      <div>
+        <nav>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/weekly">Weekly</Link></li>
+            <li><Link to="/weekly-battle">Weekly-battle</Link></li>
+            <li><Link to="/popular">Popular</Link></li>
+            <li><Link to="/popular-battle">Popular-battle</Link></li>
+            <li><Link to="/favorites">Favorites</Link></li>
+          </ul>
+        </nav>
 
-  render() {
+        <Switch>
 
-    return (
-      <BrowserRouter>
-        <div>
-          <nav>
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/weekly">Weekly</Link></li>
-              <li><Link to="/weekly-battle">Weekly-battle</Link></li>
-              <li><Link to="/popular">Popular</Link></li>
-              <li><Link to="/popular-battle">Popular-battle</Link></li>
-              <li><Link to="/favorites">Favorites</Link></li>
-            </ul>
-          </nav>
+          <Route exact path="/" component={Home} />
 
-          <Switch>
+          <Route path="/weekly" component={Weekly} />
 
-            <Route exact path="/" component={Home} />
+          <Route path="/weekly-battle" component={WeeklyBattle} />
 
-            <Route path="/weekly" component={Weekly} />
+          <Route path="/popular" component={Popular} />
 
-            <Route path="/weekly-battle" component={WeeklyBattle} />
+          <Route path="/popular-battle" component={PopularBattle} />
 
-            <Route path="/popular" component={Popular} />
+          <Route path="/favorites" component={Favorites} />
 
-            <Route path="/popular-battle" component={PopularBattle} />
+          <Route path="*" component={Error404} />
 
-            <Route path="/favorites" component={Favorites} />
+        </Switch>
 
-            <Route path="*" component={Error404} />
+      </div>
+    </BrowserRouter>
+  );
 
-          </Switch>
-
-        </div>
-      </BrowserRouter>
-    );
-  }
 }
 
-export default App;
+

@@ -1,26 +1,38 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import Card from './Card';
 
-class PopularBattle extends Component {
+const PopularBattle = () => {
 
-    state = {
-        movies: [],
-        indexFirstMovieOfCurrentBattle: 0
-    }
+    // state = {
+    //     movies: [],
+    //     favIndex: [],
+    //     indexFirstMovieOfCurrentBattle: 0
+    // }
 
-    componentDidMount() {
-        fetch('https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=e441f8a3a151d588a4932d2c5d310769')
-            .then(response => response.json())
-            .then(data => {
-                // console.log("popularBattle fetch data", data);
-                this.setState({
-                    movies: data.results
+    const [movies, setMovies] = useState([]);
+    const [favIndex, setfavIndex] = useState([]);
+    const [indexFirstMovieOfCB, setindexFirstMovieOfCB] = useState(0);
+
+    useEffect(() => {
+        if(movies.length == 0){
+
+            fetch('https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=e441f8a3a151d588a4932d2c5d310769')
+                .then(response => response.json())
+                .then(data => {
+                    setMovies(data.results)
+                    // console.log("popularBattle fetch data", data);
+                    // this.setState({
+                    //     movies: data.results
+                    // })
                 })
-            })
+        }
 
-    }
+    })
 
-    updateIndexMovieBattle = (movieId) => {
+    const updateIndexMovieBattle = (movieId) => {
+        // useEffect((movieId) => {
+
+        //    console.log( "localstorage",localStorage.getItem("favorites"));
         console.log("updateIndexMovieBattle", typeof movieId);
 
         const idsFavorites = JSON.parse(localStorage.getItem("favorites")) || []
@@ -34,33 +46,54 @@ class PopularBattle extends Component {
             localStorage.setItem("favorites", JSON.stringify(idsFavorites))
         }
 
-        this.setState({
-            indexFirstMovieOfCurrentBattle: this.state.indexFirstMovieOfCurrentBattle + 2
-        })
+
+        //     // let idsFavorites = []
+        //     let idsFavorites = JSON.parse(localStorage.getItem("favorites")) || []
+
+        //     const moviesss = movieId
+
+        //     console.log("idsFavorites", idsFavorites);
+
+        //     if (!idsFavorites.find(elem => elem === movieId)) {
+
+
+        // if (idsFavorites.(moviesss == true)) {
+        //     idsFavorites = [...idsFavorites, moviesss]
+
+        //     localStorage.setItem("favorites", JSON.stringify(idsFavorites))
+        // }
+
+        // this.setState({
+        //     indexFirstMovieOfCurrentBattle: this.state.indexFirstMovieOfCurrentBattle + 2
+        // })
+
+        setindexFirstMovieOfCB(indexFirstMovieOfCB + 2)
     }
+    // },[indexFirstMovieOfCB])
 
 
-    renderTwoMovies() {
-        const { indexFirstMovieOfCurrentBattle } = this.state
-
+    const renderTwoMovies = () => {
+        // useEffect(() => {
+        // const { indexFirstMovieOfCurrentBattle } = this.state
+        console.log("movies :", movies);
         return (
             <>
                 <div className="col-6" style={{ cursor: "pointer" }}
-                    onClick={() => this.updateIndexMovieBattle(this.state.movies[indexFirstMovieOfCurrentBattle].id)}>
+                    onClick={() => updateIndexMovieBattle(movies[indexFirstMovieOfCB].id)}>
                     <Card
-                        title={this.state.movies[indexFirstMovieOfCurrentBattle].title}
-                        poster_path={this.state.movies[indexFirstMovieOfCurrentBattle].poster_path}
-                        release_date={this.state.movies[indexFirstMovieOfCurrentBattle].release_date}
-                        overview={this.state.movies[indexFirstMovieOfCurrentBattle].overview}
+                        title={movies[indexFirstMovieOfCB].title}
+                        poster_path={movies[indexFirstMovieOfCB].poster_path}
+                        release_date={movies[indexFirstMovieOfCB].release_date}
+                        overview={movies[indexFirstMovieOfCB].overview}
                     />
                 </div>
                 <div className="col-6" style={{ cursor: "pointer" }}
-                    onClick={() => this.updateIndexMovieBattle(this.state.movies[indexFirstMovieOfCurrentBattle + 1].id)}>
+                    onClick={() => updateIndexMovieBattle(movies[indexFirstMovieOfCB + 1].id)}>
                     <Card
-                        title={this.state.movies[indexFirstMovieOfCurrentBattle + 1].title}
-                        poster_path={this.state.movies[indexFirstMovieOfCurrentBattle + 1].poster_path}
-                        release_date={this.state.movies[indexFirstMovieOfCurrentBattle + 1].release_date}
-                        overview={this.state.movies[indexFirstMovieOfCurrentBattle + 1].overview}
+                        title={movies[indexFirstMovieOfCB + 1].title}
+                        poster_path={movies[indexFirstMovieOfCB + 1].poster_path}
+                        release_date={movies[indexFirstMovieOfCB + 1].release_date}
+                        overview={movies[indexFirstMovieOfCB + 1].overview}
                     />
                 </div>
             </>
@@ -68,30 +101,31 @@ class PopularBattle extends Component {
     }
 
 
-    render() {
 
-        console.log("popularBattle state indexFirstMovieOfCurrentBattle ",this.state.indexFirstMovieOfCurrentBattle);
+    // console.log("JSON.parse(localStorage.getItem(favorites)" , JSON.parse(localStorage.getItem("favorites")));
 
-        console.log("popularBattle state movies ", this.state.movies);
-        return (
-            <div>
-                <h1 className="text-center" >Popular Battle</h1>
+    console.log("popularBattle state indexFirstMovieOfCB ", indexFirstMovieOfCB);
 
-                {this.state.indexFirstMovieOfCurrentBattle > 19
-                    ? <h3 className="text-center">Vous avez parcouru tous les films</h3>
-                    : <div className="row">
-                        {this.state.movies.length !== 0
-                            ? this.renderTwoMovies()
-                            : "Please wait until the movies are loaded"
-                        }
-                    </div>
-                }
+    console.log("popularBattle state movies ", movies);
+    return (
+        <div>
+            <h1 className="text-center" >Popular Battle</h1>
+
+            {indexFirstMovieOfCB > 19
+                ? <h3 className="text-center">Vous avez parcouru tous les films</h3>
+                : <div className="row">
+                    {movies.length !== 0
+                        ? renderTwoMovies()
+                        : "Please wait until the movies are loaded"
+                    }
+                </div>
+            }
 
 
 
-            </div>
-        );
-    }
+        </div>
+    );
+
 }
 
 export default PopularBattle;

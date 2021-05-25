@@ -1,38 +1,45 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import Card from './Card'
 
-class Popular extends Component {
+const Popular = () => {
 
-    state = {
-        movies: []
-    }
 
-    componentDidMount() {
+
+    const [movies, setMovies] = useState([])
+
+    useEffect(() => {
         fetch('https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=e441f8a3a151d588a4932d2c5d310769')
-            .then(response => response.json())
-            .then(data => {
-                // console.log("popular data componentDidMount: ",data);
-                this.setState({
-                    movies: data.results
-                })
+            .then((response) => {
+                return  response.json()
             })
-    }
+            .then((data) => {
 
-    render() {
-        // console.log("popular state movies: ", this.state.movies[0]);
-        return (
-            <div>
-                <h1>Popular</h1>
+                // return console.log("popular data componentDidMount: ", data.results);
+                return setMovies(data.results)
+                // this.setState({
+                //     movies: data.results
+                // })
+                // console.log("response json useE: ", response.json()),
+                
+            })
 
-                <ul>
-                    {this.state.movies.map((elem) => {
-                        return <Card {...elem}/>
-                    })}
-                </ul>
+    }, []);
 
-            </div>
-        );
-    }
+    console.log("movies: ", movies);
+    // console.log("popular state movies: ", this.state.movies[0]);
+    return (
+        <div>
+            <h1>Popular</h1>
+
+            <ul>
+                {movies.map((elem) => {
+                    return <Card {...elem} />
+                })}
+            </ul>
+
+        </div>
+    );
+
 }
- 
+
 export default Popular;
