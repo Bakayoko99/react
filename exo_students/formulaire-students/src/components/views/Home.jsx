@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import AddStudent from './AddStudent';
 
 
@@ -10,6 +11,8 @@ const Home = () => {
     const [students, setStudents] = useState([])
     const [nameSend, setNameSend] = useState('')
 
+    let history = useHistory()
+
 
     // const studentAdded = () => {
     //     return students
@@ -18,11 +21,15 @@ const Home = () => {
 
     useEffect(() => {
 
-        axios.get('http://localhost:8099/students')
+        axios.get('http://localhost:8098/students')
             .then(res => { setStudents(res.data)
                 console.log('log get: ', res.data)
             })
 
+
+    // const studentAdded = () => {
+    //     return students
+    // };
     }, []);
 
     // const listStudents = () => {
@@ -34,12 +41,16 @@ const Home = () => {
     }
 
     const addName = () => {
-        axios.post('http://localhost:8099/students', { name: nameSend })
-            .then(res => console.log("log post: ", res))
+        
+        console.log("debut addname");
+        axios.post('http://localhost:8098/students', { name: nameSend })
+            .then((response) => {
+                response.data === "ok" && history.push(`/students/add/${nameSend}`) 
+                console.log("addName log post: ", response.data)
+            }) 
         //     setStudents(nameSend)
     }
 
-    console.log("home state students", students);
     console.log("home state name", nameSend);
     return (
         <div>
@@ -58,7 +69,7 @@ const Home = () => {
                             <input type="email" onChange={handleName} className="form-control" id="exampleFormControlInput1" ></input>
                         </div>
                     </div>
-                    <a href="students/add"><button type="submit" onClick={addName} className="btn btn-outline-primary">Send</button></a>
+                    <button type="submit" onClick={addName} className="btn btn-outline-primary">Send</button>
                 </div>
             </div>
         </div>

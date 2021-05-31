@@ -28,7 +28,7 @@ function App() {
         </nav>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/students/add' component={AddStudent} />
+          <Route exact path='/students/add/:name' component={AddStudent} />
         </Switch>
       </div>
     </BrowserRouter>
